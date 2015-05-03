@@ -16,6 +16,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //TODO: Change button colors on click so that they won't be the same color as the background
+        
         //creating a label
         var label = UILabel()
         label.frame = CGRectMake(50,50,60,60)
@@ -52,7 +54,6 @@ class ViewController: UIViewController {
 
         button_subtract.addTarget(self, action: "decrementCount", forControlEvents: UIControlEvents.TouchUpInside)
 
-        //TODO: make button change background colors on tap
         //creating a change background color button
         var background_button = UIButton()
         background_button.frame = CGRectMake(200, 250, 100, 60)
@@ -60,17 +61,17 @@ class ViewController: UIViewController {
         background_button.setTitleColor(UIColor.redColor(), forState: .Normal)
         self.view.addSubview(background_button)
         
-        
         background_button.addTarget(self, action:"changeBackground", forControlEvents: UIControlEvents.TouchUpInside)
-
     }
     
+    //increment counter
     func incrementCount() {
         self.count++
         self.label.text = "\(self.count)"
         self.second_label.text = "\(self.count)"
     }
     
+    //decrement counter
     func decrementCount(){
         self.count--
         self.label.text = "\(self.count)"
