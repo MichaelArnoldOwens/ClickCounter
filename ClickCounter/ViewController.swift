@@ -12,30 +12,86 @@ class ViewController: UIViewController {
 
     var count = 0
     var label:UILabel!  //implicitly unwrapped optional
+    var second_label:UILabel! //** didn't add this here
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //creating a label
         var label = UILabel()
-        label.frame = CGRectMake(150,150,60,60)
+        label.frame = CGRectMake(50,50,60,60)
         label.text = "0"
         
         self.view.addSubview(label)
         self.label = label
         
-        //creating a button
-        var button = UIButton()
-        button.frame = CGRectMake(150, 250, 60, 60)
-        button.setTitle("Click", forState: .Normal)
-        button.setTitleColor(UIColor.blueColor(), forState: .Normal)
-        self.view.addSubview(button)
+        //creating a second label
+        var second_label = UILabel() //**only had this here
+        second_label.frame = CGRectMake(250,50,60,60)
+        second_label.text = "0"
         
-        button.addTarget(self, action: "incrementCount", forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(second_label)
+        self.second_label = second_label //**had this overwriting self.label (instead of self.second_label
+
+
+        //creating an increment button
+        var button_add = UIButton()
+        button_add.frame = CGRectMake(150, 250, 60, 60)
+        button_add.setTitle("Add", forState: .Normal)
+        button_add.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        self.view.addSubview(button_add)
+
+        button_add.addTarget(self, action: "incrementCount", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        //creating a decrement button
+        var button_subtract = UIButton()
+        button_subtract.frame = CGRectMake(50, 250, 100, 60)
+        button_subtract.setTitle("Subtract", forState: .Normal)
+        button_subtract.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        self.view.addSubview(button_subtract)
+        
+
+        button_subtract.addTarget(self, action: "decrementCount", forControlEvents: UIControlEvents.TouchUpInside)
+
+        //TODO: make button change background colors on tap
+        //creating a change background color button
+        var background_button = UIButton()
+        background_button.frame = CGRectMake(200, 250, 100, 60)
+        background_button.setTitle("change BG", forState: .Normal)
+        background_button.setTitleColor(UIColor.redColor(), forState: .Normal)
+        self.view.addSubview(background_button)
+        
+        
+        background_button.addTarget(self, action:"changeBackground", forControlEvents: UIControlEvents.TouchUpInside)
+
     }
     
-    func incrementCount(){
+    func incrementCount() {
         self.count++
         self.label.text = "\(self.count)"
+        self.second_label.text = "\(self.count)"
+    }
+    
+    func decrementCount(){
+        self.count--
+        self.label.text = "\(self.count)"
+        self.second_label.text = "\(self.count)"
+    }
+    
+    //generate random color
+    func getRandomColor() -> UIColor {
+        
+        var randomRed:CGFloat = CGFloat(drand48())
+        
+        var randomGreen:CGFloat = CGFloat(drand48())
+        
+        var randomBlue:CGFloat = CGFloat(drand48())
+        
+        return UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
+    }
+    
+    func changeBackground(){
+
+        self.view.backgroundColor = getRandomColor()
     }
 }
 
