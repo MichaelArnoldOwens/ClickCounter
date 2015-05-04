@@ -42,6 +42,7 @@ class ViewController: UIViewController {
         button_add.setTitleColor(UIColor.blueColor(), forState: .Normal)
         self.view.addSubview(button_add)
 
+        //callback
         button_add.addTarget(self, action: "incrementCount", forControlEvents: UIControlEvents.TouchUpInside)
         
         //creating a decrement button
@@ -51,7 +52,7 @@ class ViewController: UIViewController {
         button_subtract.setTitleColor(UIColor.blueColor(), forState: .Normal)
         self.view.addSubview(button_subtract)
         
-
+        //callback
         button_subtract.addTarget(self, action: "decrementCount", forControlEvents: UIControlEvents.TouchUpInside)
 
         //creating a change background color button
@@ -61,12 +62,15 @@ class ViewController: UIViewController {
         background_button.setTitleColor(UIColor.redColor(), forState: .Normal)
         self.view.addSubview(background_button)
         
+        //callback
         background_button.addTarget(self, action:"changeBackground", forControlEvents: UIControlEvents.TouchUpInside)
     }
     
     //increment counter
     func incrementCount() {
         self.count++
+        
+        //outlets
         self.label.text = "\(self.count)"
         self.second_label.text = "\(self.count)"
     }
@@ -74,6 +78,8 @@ class ViewController: UIViewController {
     //decrement counter
     func decrementCount(){
         self.count--
+        
+        //outlets
         self.label.text = "\(self.count)"
         self.second_label.text = "\(self.count)"
     }
